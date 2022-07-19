@@ -1,9 +1,11 @@
 package africa.semicolon.cms.data.repositories;
 
+import africa.semicolon.cms.data.models.Contact;
 import africa.semicolon.cms.data.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserRepositoryImpl implements UserRepository {
     private int counter;
@@ -11,9 +13,16 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User saveUser(User user) {
-        counter++;
-        user.setId(counter);
-        users.add(user);
+        var userToUpdate = findById(user.getId());
+        if (userToUpdate == null) {
+            ++counter;
+            user.setId(counter);
+            users.add(user);
+        } else {
+            userToUpdate.setFirstName(user.getFirstName());
+            userToUpdate.setLastName(user.getLastName());
+            userToUpdate.updatePin();
+        }
         return user;
     }
 
@@ -43,17 +52,39 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> findByLastName(String name) {
+    public User find(String name) {
+        for (var user : users) {
+            if (Objects.equals(user.getFirstName(), name)) {
+                return user;
+            }
+        }
         return null;
+    }
+
+    @Override
+    public List<User> findByLastName(String name) {
+        ArrayList<User> usersWithLastNames = new ArrayList<>();
+        for (var user : users) {
+            if (user.getLastName().equalsIgnoreCase(name)) {
+                usersWithLastNames.add(user);
+            }
+        }
+        return usersWithLastNames;
     }
 
     @Override
     public List<User> findByFirstName(String name) {
-        return null;
+        ArrayList<User> usersWithFirstNames = new ArrayList<>();
+        for (var user : users) {
+            if (user.getFirstName().equalsIgnoreCase(name)) {
+                usersWithFirstNames.add(user);
+            }
+        }
+        return usersWithFirstNames;
     }
 
     @Override
     public List<User> findAll() {
-        return null;
+        return users;
     }
 }

@@ -1,11 +1,13 @@
 package africa.semicolon.cms.data.models;
 
+import java.util.Objects;
+
 public class User {
     private String firstName;
     private String lastName;
     private String pin;
-    private boolean isLocked = false;
     private int id;
+    private boolean setLock;
 
     public int getId() {
         return id;
@@ -35,7 +37,15 @@ public class User {
         return lastName;
     }
 
-    public void setLocked(boolean locked) {
-        isLocked = locked;
+    public boolean isLocked(String pin) {
+        if (Objects.equals(this.pin, pin)) {
+            setLock = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void updatePin() {
+        setPin(this.pin);
     }
 }

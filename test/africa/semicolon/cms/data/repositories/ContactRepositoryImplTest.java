@@ -58,6 +58,7 @@ class ContactRepositoryImplTest {
         contact1.setEmail("semi@semic.com");
         contact1.setPhoneNumber("123409877");
         contactRepository.save(contact1);
+
         Contact contact2 = new Contact();
         contact2.setFirstName("Ace");
         contact2.setLastName("Boyo");
@@ -134,6 +135,7 @@ class ContactRepositoryImplTest {
         contact1.setPhoneNumber("123409877");
         contactRepository.save(contact1);
         assertEquals(1, contactRepository.count());
+
         contact1.setFirstName("Ace");
         contact1.setLastName("Boyo");
         contact1.setEmail("ace@boyo.com");
@@ -144,6 +146,25 @@ class ContactRepositoryImplTest {
         assertEquals("Ace", contactRepository.findById(1).getFirstName());
     }
 
+    @Test
+    void saveContacts_findAllContacts() {
+        ContactRepository contactRepository = new ContactRepositoryImpl();
+        Contact contact1 = new Contact();
+        contact1.setFirstName("Chibuzo");
+        contact1.setLastName("Africa");
+        contact1.setEmail("semi@semic.com");
+        contact1.setPhoneNumber("123409877");
+        contactRepository.save(contact1);
+
+        Contact contact2 = new Contact();
+        contact2.setFirstName("Ace");
+        contact2.setLastName("Boyo");
+        contact2.setEmail("ace@boyo.com");
+        contact2.setPhoneNumber("123409877");
+        contactRepository.save(contact2);
+
+        assertEquals(2,contactRepository.findAll().size());
+    }
 
 
 }

@@ -11,12 +11,12 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public Contact save(Contact contact) {
-        if (findById(contact.getId()) == null) {
+        var contactToEdit = findById(contact.getId());
+        if (contactToEdit == null) {
             counter++;
             contact.setId(counter);
             contacts.add(contact);
         } else {
-            var contactToEdit = findById(contact.getId());
             contactToEdit.setFirstName(contact.getFirstName());
             contactToEdit.setLastName(contact.getLastName());
             contactToEdit.setPhoneNumber(contact.getPhoneNumber());

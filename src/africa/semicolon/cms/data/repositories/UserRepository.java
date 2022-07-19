@@ -16,6 +16,8 @@ public interface UserRepository {
 
     User findById(int id);
 
+    User find(String name);
+
     List<User> findByLastName(String name);
 
     List<User> findByFirstName(String name);
