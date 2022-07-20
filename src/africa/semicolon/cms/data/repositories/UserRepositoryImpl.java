@@ -1,6 +1,5 @@
 package africa.semicolon.cms.data.repositories;
 
-import africa.semicolon.cms.data.models.Contact;
 import africa.semicolon.cms.data.models.User;
 
 import java.util.ArrayList;
@@ -86,5 +85,15 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> findAll() {
         return users;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        for (var user : users) {
+            if (user.getEmail().equalsIgnoreCase(email)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

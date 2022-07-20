@@ -24,4 +24,5 @@ public interface UserRepository {
 
     List<User> findAll();
 
+    User findByEmail(String email);
 }

@@ -1,13 +1,17 @@
 package africa.semicolon.cms.data.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class User {
     private String firstName;
     private String lastName;
+    private String email;
     private String pin;
     private int id;
     private boolean setLock;
+    private List<Contact> contacts = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -27,6 +31,14 @@ public class User {
 
     public void setPin(String pin) {
         this.pin = pin;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getFirstName() {
