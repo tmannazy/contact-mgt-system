@@ -1,19 +1,19 @@
 package africa.semicolon.cms.dtos.requests;
 
-public class NewContactRequest {
+public class ContactRequest {
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
 
-    public NewContactRequest(String firstName, String lastName, String email, String phoneNumber) {
+    public ContactRequest(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public NewContactRequest() {
+    public ContactRequest() {
     }
 
     public String getFirstName() {

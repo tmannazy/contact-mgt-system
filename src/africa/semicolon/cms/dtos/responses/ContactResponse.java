@@ -1,6 +1,6 @@
 package africa.semicolon.cms.dtos.responses;
 
-public class NewContactResponse {
+public class ContactResponse {
     private String message;
 
     public String getMessage() {

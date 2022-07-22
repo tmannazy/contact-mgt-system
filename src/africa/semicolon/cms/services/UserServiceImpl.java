@@ -5,7 +5,7 @@ import africa.semicolon.cms.data.repositories.UserRepository;
 import africa.semicolon.cms.data.repositories.UserRepositoryImpl;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
 import africa.semicolon.cms.dtos.responses.RegisterUserResponse;
-import africa.semicolon.cms.exceptions.UserExistException;
+import africa.semicolon.cms.exceptions.UserExistsException;
 
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository = new UserRepositoryImpl();
@@ -13,10 +13,10 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public RegisterUserResponse register(RegisterRequest registerRequest) throws UserExistException {
+    public RegisterUserResponse register(RegisterRequest registerRequest) throws UserExistsException {
         var savedUser = userRepository.findByEmail(registerRequest.getEmail());
         if (savedUser != null) {
-            throw new UserExistException(registerRequest.getEmail() + " user already exists");
+            throw new UserExistsException("User with " + registerRequest.getEmail() + " already exists.");
         }
         User newUserToAdd = new User();
         newUserToAdd.setEmail(registerRequest.getEmail());
@@ -32,4 +32,6 @@ public class UserServiceImpl implements UserService {
     public int numberOfUsers() {
         return userRepository.count();
     }
+
+
 }
