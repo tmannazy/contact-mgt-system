@@ -1,9 +1,9 @@
 package africa.semicolon.cms.dtos.responses;
 
 public class RegisterUserResponse {
-    private String message;
+        private String message;
 
-    public String getMessage() {
+        public String getMessage() {
         return message;
     }
 

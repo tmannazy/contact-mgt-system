@@ -5,6 +5,7 @@ public class ContactRequest {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String userEmail;
 
     public ContactRequest(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
@@ -46,5 +47,13 @@ public class ContactRequest {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }

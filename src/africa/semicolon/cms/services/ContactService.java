@@ -1,10 +1,14 @@
 package africa.semicolon.cms.services;
 
-import africa.semicolon.cms.dtos.requests.ContactRequest;
-import africa.semicolon.cms.dtos.responses.ContactResponse;
+import africa.semicolon.cms.data.models.Contact;
+
+import java.util.List;
 
 public interface ContactService {
-    ContactResponse saveContact(ContactRequest contactRequest);
+    Contact saveContact(Contact contact);
 
     int getNumberOfContacts();
+
+    List<Contact> findContactByEmail(String email);
+
 }

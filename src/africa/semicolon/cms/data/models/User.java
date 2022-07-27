@@ -37,6 +37,14 @@ public class User {
         this.email = email;
     }
 
+    public void addNewContact(Contact contact) {
+        contacts.add(contact);
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
     public String getEmail() {
         return email;
     }
