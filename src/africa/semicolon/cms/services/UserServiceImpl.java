@@ -24,15 +24,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public RegisterUserResponse register(RegisterRequest registerRequest) throws UserExistsException {
-        var savedUser = userRepository.findByEmail(registerRequest.getEmail());
-        if (savedUser != null) {
-            throw new UserExistsException("User with " + registerRequest.getEmail() + " already exists.");
-        }
+        validateUser(registerRequest);
         User newUserToAdd = new User();
         Mapper.map(registerRequest, newUserToAdd);
         userRepository.saveUser(newUserToAdd);
         uResponse.getMessage();
         return uResponse;
+    }
+
+    private void validateUser(RegisterRequest registerRequest) {
+        var savedUser = userRepository.findByEmail(registerRequest.getEmail());
+        if (savedUser != null) {
+            throw new UserExistsException("User with " + registerRequest.getEmail() + " already exists.");
+        }
     }
 
     @Override
@@ -42,11 +46,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ContactResponse addContact(ContactRequest contactRequest) {
-        Contact contact = new Contact(contactRequest.getFirstName(), contactRequest.getLastName(),
-                contactRequest.getEmail(), contactRequest.getPhoneNumber());
-        contactService.saveContact(contact);
-        User user = userRepository.findByEmail(contactRequest.getUserEmail());
-        user.getContacts().add(contact);
+        var user = userRepository.findByEmail(contactRequest.getUserEmail());
+        if (user == null) {
+            throw new UserExistsException("User with " + contactRequest.getUserEmail() + " not found.");
+        }
+        var savedContact = contactService.saveContact(contactRequest);
+        user.getContacts().add(savedContact);
         userRepository.saveUser(user);
         return null;
     }

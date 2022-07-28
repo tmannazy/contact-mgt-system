@@ -17,7 +17,6 @@ class UserServiceImplTest {
     UserRepository userRepository = new UserRepositoryImpl();
     ContactService contactService = new ContactServiceImpl();
     RegisterRequest userRequest;
-
     ContactRequest contactRequest;
 
     @BeforeEach
@@ -26,7 +25,6 @@ class UserServiceImplTest {
         userRequest = new RegisterRequest();
         contactRequest = new ContactRequest();
     }
-
 
     @Test
     void testThatNewAccountIsCreated() {
