@@ -2,7 +2,10 @@ package africa.semicolon.cms.services;
 
 import africa.semicolon.cms.data.models.Contact;
 import africa.semicolon.cms.data.models.User;
+import africa.semicolon.cms.data.repositories.ContactRepository;
+import africa.semicolon.cms.data.repositories.ContactRepositoryImpl;
 import africa.semicolon.cms.data.repositories.UserRepository;
+import africa.semicolon.cms.data.repositories.UserRepositoryImpl;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
 import africa.semicolon.cms.dtos.responses.ContactResponse;
@@ -20,6 +23,13 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, ContactService contactService) {
         this.userRepository = userRepository;
         this.contactService = contactService;
+    }
+
+    public UserServiceImpl() {
+        this.userRepository = new UserRepositoryImpl();
+        ContactRepository contactRepository = new ContactRepositoryImpl();
+        this.contactService = new ContactServiceImpl(contactRepository);
+
     }
 
     @Override
@@ -46,11 +56,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ContactResponse addContact(ContactRequest contactRequest) {
-        var user = userRepository.findByEmail(contactRequest.getUserEmail());
-        if (user == null) {
-            throw new UserExistsException("User with " + contactRequest.getUserEmail() + " not found.");
-        }
-        var savedContact = contactService.saveContact(contactRequest);
+        Contact newContact = new Contact();
+        Mapper.map(contactRequest, newContact);
+        var savedContact = contactService.saveContact(newContact);
+        User user = userRepository.findByEmail(contactRequest.getUserEmail());
         user.getContacts().add(savedContact);
         userRepository.saveUser(user);
         return null;

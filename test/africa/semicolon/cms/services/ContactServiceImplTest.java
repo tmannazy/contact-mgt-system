@@ -1,6 +1,8 @@
 package africa.semicolon.cms.services;
 
-import africa.semicolon.cms.dtos.requests.ContactRequest;
+import africa.semicolon.cms.data.models.Contact;
+import africa.semicolon.cms.data.repositories.ContactRepository;
+import africa.semicolon.cms.data.repositories.ContactRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,10 +11,12 @@ class ContactServiceImplTest {
 
     @Test
     void testThatContactIsAdded() {
-        ContactService contactService = new ContactServiceImpl();
-        ContactRequest contactRequest = new ContactRequest("Semicolon","Alarm","read@gmail.com","1234567890");
-        contactService.saveContact(contactRequest);
+        ContactRepository contactRepository = new ContactRepositoryImpl();
+        ContactService contactService = new ContactServiceImpl(contactRepository);
+        Contact contact = new Contact("Semicolon","Alarm","read@gmail.com","1234567890");
+        contactService.saveContact(contact);
         assertEquals(1,contactService.getNumberOfContacts());
+        assertEquals(1, contact.getId());
     }
 
 }

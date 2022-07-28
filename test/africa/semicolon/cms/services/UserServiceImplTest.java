@@ -1,5 +1,7 @@
 package africa.semicolon.cms.services;
 
+import africa.semicolon.cms.data.repositories.ContactRepository;
+import africa.semicolon.cms.data.repositories.ContactRepositoryImpl;
 import africa.semicolon.cms.data.repositories.UserRepository;
 import africa.semicolon.cms.data.repositories.UserRepositoryImpl;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
@@ -15,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UserServiceImplTest {
     UserService userCreated;
     UserRepository userRepository = new UserRepositoryImpl();
-    ContactService contactService = new ContactServiceImpl();
+    ContactRepository contactRepository = new ContactRepositoryImpl();
+    ContactService contactService = new ContactServiceImpl(contactRepository);
     RegisterRequest userRequest;
     ContactRequest contactRequest;
 
