@@ -1,5 +1,8 @@
 package africa.semicolon.cms.data.models;
 
+import lombok.Data;
+
+@Data
 public class Contact {
     private int id;
     private String firstName;
@@ -15,46 +18,6 @@ public class Contact {
     }
 
     public Contact() {
-    }
-
-    public void setFirstName(String firstNme) {
-        this.firstName = firstNme;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setId(int idNum) {
-        id = idNum;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @Override
