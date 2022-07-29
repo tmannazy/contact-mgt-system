@@ -7,22 +7,27 @@ import africa.semicolon.cms.dtos.responses.ContactResponse;
 import africa.semicolon.cms.dtos.responses.RegisterUserResponse;
 import africa.semicolon.cms.services.UserService;
 import africa.semicolon.cms.services.UserServiceImpl;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RestController
 public class UserController {
 
     public UserService userService = new UserServiceImpl();
 
-    public RegisterUserResponse registerUser(RegisterRequest registerRequest) {
+    @PostMapping("/user")
+    public RegisterUserResponse registerUser(@RequestBody RegisterRequest registerRequest) {
         return userService.register(registerRequest);
     }
 
-    public ContactResponse addContact(ContactRequest contactRequest) {
+    @PatchMapping("/user")
+    public ContactResponse addContact(@RequestBody ContactRequest contactRequest) {
         return userService.addContact(contactRequest);
     }
 
-    public List<Contact> findContactBelongingTo(String email) {
+    @GetMapping("/user/{emails}")
+    public List<Contact> findContactBelongingTo(@PathVariable("emails") String email) {
         return userService.findContactsBelongingTo(email);
     }
 }

@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
         } else {
             userToUpdate.setFirstName(user.getFirstName());
             userToUpdate.setLastName(user.getLastName());
-            userToUpdate.updatePin();
+//            userToUpdate.updatePin();
         }
         return user;
     }

@@ -18,17 +18,7 @@ public class User {
     private String lastName;
     private String email;
     private String pin;
-    private boolean setLock;
+//    private boolean setLock;
     private List<Contact> contacts = new ArrayList<>();
-    public boolean isLocked(String pin) {
-        if (Objects.equals(this.pin, pin)) {
-            setLock = true;
-            return true;
-        }
-        return false;
-    }
 
-    public void updatePin() {
-        setPin(this.pin);
-    }
 }

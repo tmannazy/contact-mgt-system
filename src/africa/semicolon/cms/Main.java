@@ -3,13 +3,18 @@ package africa.semicolon.cms;
 import africa.semicolon.cms.controllers.UserController;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
 
+@SpringBootApplication
 public class Main {
     private static final Scanner keyboardInput = new Scanner(System.in);
     private static UserController userController = new UserController();
     public static void main(String[] args) {
+
+        SpringApplication.run(Main.class, args);
         displayMainMenu();
     }
 
