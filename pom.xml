@@ -40,7 +40,6 @@
                     <target>18</target>
                 </configuration>
             </plugin>
-        </plugins>
 
     </build>
 

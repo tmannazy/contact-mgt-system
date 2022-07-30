@@ -53,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User find(String name) {
         for (var user : users) {
-            if (Objects.equals(user.getFirstName(), name)) {
+            if (user.getFirstName().equalsIgnoreCase(name)) {
                 return user;
             }
         }
