@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         User newUserToAdd = new User();
         Mapper.map(registerRequest, newUserToAdd);
         userRepository.saveUser(newUserToAdd);
-        uResponse.setMessage("User successfully registered.");
+        uResponse.setMessage("New user " + registerRequest.getFirstName()  + " " + registerRequest.getLastName() + " successfully registered.");
         return uResponse;
     }
 

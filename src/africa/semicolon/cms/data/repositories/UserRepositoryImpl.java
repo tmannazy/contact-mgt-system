@@ -4,7 +4,6 @@ import africa.semicolon.cms.data.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class UserRepositoryImpl implements UserRepository {
     private int counter;
