@@ -1,9 +1,7 @@
 package africa.semicolon.cms.services;
 
 import africa.semicolon.cms.data.repositories.ContactRepository;
-import africa.semicolon.cms.data.repositories.ContactRepositoryImpl;
 import africa.semicolon.cms.data.repositories.UserRepository;
-import africa.semicolon.cms.data.repositories.UserRepositoryImpl;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
 import africa.semicolon.cms.exceptions.UserExistsException;

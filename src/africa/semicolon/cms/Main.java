@@ -46,7 +46,7 @@ public class Main {
     }
 
     private static void findContactBelongingToUser() {
-        var contacts = userController.findContactBelongingTo(input("Enter your email: "));
+        var contacts = userController.findContactsBelongingTo(input("Enter your email: "));
         contacts.forEach(contact -> System.out.println(contact.toString()));
         displayMainMenu();
     }

@@ -2,7 +2,6 @@ package africa.semicolon.cms.services;
 
 import africa.semicolon.cms.data.models.Contact;
 import africa.semicolon.cms.data.repositories.ContactRepository;
-import africa.semicolon.cms.data.repositories.ContactRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

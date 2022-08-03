@@ -8,7 +8,7 @@ import africa.semicolon.cms.dtos.responses.AllContactResponse;
 
 public class Mapper {
     public static void map(RegisterRequest registerRequest, User newUserToAdd) {
-        newUserToAdd.setEmail(registerRequest.getEmail());
+        newUserToAdd.setEmailAddress(registerRequest.getEmail());
         newUserToAdd.setLastName(registerRequest.getLastName());
         newUserToAdd.setFirstName(registerRequest.getFirstName());
         newUserToAdd.setPin(registerRequest.getPin());
