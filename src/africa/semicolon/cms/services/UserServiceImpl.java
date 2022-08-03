@@ -8,11 +8,13 @@ import africa.semicolon.cms.data.repositories.UserRepository;
 import africa.semicolon.cms.data.repositories.UserRepositoryImpl;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
+import africa.semicolon.cms.dtos.responses.AllContactResponse;
 import africa.semicolon.cms.dtos.responses.ContactResponse;
 import africa.semicolon.cms.dtos.responses.RegisterUserResponse;
 import africa.semicolon.cms.exceptions.UserExistsException;
 import africa.semicolon.cms.utils.Mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -62,7 +64,9 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(contactRequest.getUserEmail());
         user.getContacts().add(savedContact);
         userRepository.saveUser(user);
-        return null;
+        ContactResponse contactResponse = new ContactResponse();
+        contactResponse.setMessage(String.format("%s successfully added.", contactRequest.getFirstName()));
+        return contactResponse;
     }
 
     @Override
@@ -70,9 +74,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Contact> findContactsBelongingTo(String email) {
+    public List<AllContactResponse> findContactsBelongingTo(String email) {
         var user = userRepository.findByEmail(email);
-        return user.getContacts();
+        List<Contact> allUserContacts = user.getContacts();
+        List<AllContactResponse> response = new ArrayList<>();
+        allUserContacts.forEach(contact -> {
+        AllContactResponse singleResponse = new AllContactResponse();
+            Mapper.map(singleResponse, contact);
+            response.add(singleResponse);
+        });
+        return response;
     }
 
 

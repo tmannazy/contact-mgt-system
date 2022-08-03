@@ -4,6 +4,7 @@ import africa.semicolon.cms.data.models.Contact;
 import africa.semicolon.cms.data.models.User;
 import africa.semicolon.cms.dtos.requests.ContactRequest;
 import africa.semicolon.cms.dtos.requests.RegisterRequest;
+import africa.semicolon.cms.dtos.responses.AllContactResponse;
 
 public class Mapper {
     public static void map(RegisterRequest registerRequest, User newUserToAdd) {
@@ -25,5 +26,11 @@ public class Mapper {
         newContact.setLastName(contactRequest.getLastName());
         newContact.setEmail(contactRequest.getEmail());
         newContact.setPhoneNumber(contactRequest.getPhoneNumber());
+    }
+
+    public static void map(AllContactResponse singleResponse, Contact contact) {
+        singleResponse.setFirstName(contact.getFirstName());
+        singleResponse.setLastName(contact.getLastName());
+        singleResponse.setId(contact.getId() + "");
     }
 }

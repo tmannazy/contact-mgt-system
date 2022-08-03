@@ -25,14 +25,19 @@ public class Main {
                 1 -> Create an Account
                 2 -> Add contact to a user
                 3 -> Find contact belonging to user
+                4 -> List all users
                 """;
         String userInput = input(prompt);
         switch (userInput.charAt(0)) {
             case '1'-> createAccount();
             case '2'-> addContactToAUser();
             case '3' -> findContactBelongingToUser();
+            case '4' -> listAllUsers();
 
         }
+    }
+
+    private static void listAllUsers() {
     }
 
     private static String input(String prompt) {
